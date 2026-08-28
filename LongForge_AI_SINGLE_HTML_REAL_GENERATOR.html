@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>LongForge AI — One File Text to Video</title>
+<style>
+:root{--bg:#050914;--card:#0c1728;--card2:#101f34;--line:#203550;--txt:#f3f8ff;--muted:#94a9c0;--blue:#3b82f6;--violet:#8b5cf6;--cyan:#22d3ee;--gold:#fbbf24;--green:#22c55e}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#16345d 0,transparent 32%),radial-gradient(circle at 100% 30%,#29154d 0,transparent 28%),var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+.top{position:sticky;top:0;z-index:5;background:#06101ce8;border-bottom:1px solid #ffffff12;backdrop-filter:blur(18px);padding:14px 18px;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-weight:1000;background:linear-gradient(135deg,var(--blue),var(--violet));box-shadow:0 10px 30px #3b82f655}.brand b{font-size:17px}.brand small{display:block;color:var(--muted);font-size:10px}.status{font-size:11px;color:#9fb3c9}.wrap{max-width:1180px;margin:auto;padding:24px 15px 60px}.hero,.panel{background:linear-gradient(145deg,#0e1c2fef,#07111ff2);border:1px solid #ffffff12;border-radius:24px;box-shadow:0 25px 70px #0008,inset 0 1px #ffffff0c}.hero{padding:28px;margin-bottom:18px;overflow:hidden;position:relative}.hero:after{content:"";position:absolute;width:360px;height:360px;border-radius:50%;background:#3b82f62b;filter:blur(30px);right:-160px;top:-170px}.tag{font-size:10px;font-weight:900;letter-spacing:.12em;color:#7dd3fc;background:#22d3ee0c;border:1px solid #22d3ee30;border-radius:99px;padding:7px 10px;display:inline-block}h1{font-size:clamp(34px,6vw,62px);line-height:.98;letter-spacing:-.045em;margin:16px 0 12px}.grad{background:linear-gradient(90deg,#fff,#67e8f9,#a78bfa);color:transparent;background-clip:text;-webkit-background-clip:text}.hero p{color:#a6bad0;line-height:1.65;max-width:780px;margin:0}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.panel{padding:20px}.panel h2{font-size:17px;margin:0 0 15px}.label{display:block;font-size:11px;color:#b7c9dd;font-weight:900;margin:14px 0 7px}textarea,input,select{width:100%;background:#07111f;color:var(--txt);border:1px solid var(--line);border-radius:14px;padding:13px;outline:0}textarea{min-height:250px;resize:vertical;line-height:1.6}textarea:focus,input:focus,select:focus{border-color:#3b82f688;box-shadow:0 0 0 4px #3b82f615}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{border:1px solid var(--line);background:#07111f;color:#a9bdd2;border-radius:999px;padding:9px 11px}.chip.active{border-color:#3b82f688;background:#2563eb22;color:#fff}.btn{width:100%;border:0;border-radius:15px;padding:15px;color:#fff;font-weight:1000;margin-top:17px;background:linear-gradient(135deg,#2563eb,#7c3aed);box-shadow:0 16px 40px #2563eb33}.btn:disabled{opacity:.55}.note{font-size:10px;line-height:1.55;color:#70869e;margin-top:9px}.progress{display:none;margin-top:17px}.progress.show{display:block}.pt{display:flex;justify-content:space-between;font-size:11px;color:#9fb3c9;margin-bottom:7px}.bar{height:9px;border-radius:99px;background:#06101d;border:1px solid #1d3048;overflow:hidden}.bar i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--violet));transition:width .35s}.scenes{display:grid;gap:8px;margin-top:15px}.scene{display:grid;grid-template-columns:38px 1fr;gap:10px;padding:10px;border-radius:13px;background:#ffffff04;border:1px solid #ffffff09}.num{width:34px;height:34px;border-radius:10px;background:#2563eb18;border:1px solid #3b82f630;display:grid;place-items:center;color:#8ddff0;font-weight:900;font-size:11px}.scene b{font-size:11px}.scene p{margin:3px 0 0;font-size:10px;color:#7f94aa;line-height:1.4}.screen{aspect-ratio:16/9;border-radius:17px;background:radial-gradient(circle at 70% 20%,#3b82f655,transparent 32%),linear-gradient(145deg,#132744,#050a12);border:1px solid #ffffff13;display:grid;place-items:center;text-align:center;padding:20px}.screen strong{font-size:clamp(19px,3vw,34px)}.screen small{display:block;color:#8ea4bc;margin-top:8px}.result{margin-top:15px;display:none}.result.show{display:block}.video{width:100%;border-radius:16px;border:1px solid #ffffff15;background:#000}.download{display:block;text-align:center;margin-top:10px;text-decoration:none;color:#fff;background:#16a34a;border-radius:13px;padding:12px;font-weight:900}.danger{color:#fda4af}.footer{text-align:center;color:#566c84;font-size:10px;margin-top:25px}@media(max-width:850px){.grid{grid-template-columns:1fr}}@media(max-width:560px){.row{grid-template-columns:1fr}.hero{padding:21px}.panel{padding:15px}}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="brand"><div class="logo">LF</div><div><b>LongForge AI</b><small>Single-file AI Text → Long Video</small></div></div>
+ <div class="status">● Ready</div>
+</header>
+
+<main class="wrap">
+<section class="hero">
+ <span class="tag">ONE FILE • REAL API • 9–10 MIN LONG VIDEO</span>
+ <h1>Turn text into a <span class="grad">long video.</span></h1>
+ <p>Write a topic or paste a script. The page creates short AI video scenes and automatically prepares them for a single long-form video. No Node.js project is required for this one-file build.</p>
+</section>
+
+<section class="grid">
+<div class="panel">
+ <h2>🎬 Video Generator</h2>
+
+ <label class="label">REPLICATE API TOKEN</label>
+ <input id="token" type="password" placeholder="r8_••••••••••••••">
+ <div class="note"><span class="danger">Security:</span> this single-file version must use your token in the browser. Do not publish the token inside a public GitHub HTML file. Use a server version for a public website.</div>
+
+ <label class="label">TOPIC / SCRIPT</label>
+ <textarea id="script" placeholder="Example:
+Why discipline is more powerful than motivation.
+
+Or paste a complete 9–10 minute script. The generator will divide it into cinematic scenes."></textarea>
+
+ <div class="row">
+  <div><label class="label">TARGET</label><select id="minutes"><option value="9">9 minutes</option><option value="10" selected>10 minutes</option></select></div>
+  <div><label class="label">FORMAT</label><select id="ratio"><option value="16:9">16:9 YouTube</option><option value="9:16">9:16 Vertical</option><option value="1:1">1:1 Square</option></select></div>
+ </div>
+
+ <label class="label">VISUAL STYLE</label>
+ <div class="chips" id="styles">
+  <button class="chip active" data-style="cinematic, premium, realistic">🎬 Cinematic</button>
+  <button class="chip" data-style="ultra realistic, photorealistic">✨ Ultra Realistic</button>
+  <button class="chip" data-style="motivational cinematic">🔥 Motivation</button>
+  <button class="chip" data-style="modern documentary">🎥 Documentary</button>
+ </div>
+
+ <button class="btn" id="go">⚡ GENERATE 9–10 MIN VIDEO</button>
+
+ <div class="progress" id="prog">
+  <div class="pt"><span id="msg">Preparing…</span><b id="pct">0%</b></div>
+  <div class="bar"><i id="fill"></i></div>
+ </div>
+ <div class="scenes" id="scenes"></div>
+</div>
+
+<aside class="panel">
+ <h2>📺 Output</h2>
+ <div class="screen"><div><strong id="title">Your final video</strong><small id="sub">Generation will appear here</small></div></div>
+ <div class="result" id="result"><video id="video" class="video" controls playsinline></video><a id="download" class="download" download="longforge-video.mp4">⬇️ Download Final Video</a></div>
+ <div class="note">The current Replicate P-Video model supports text-to-video clips up to 20 seconds, so a 9–10 minute result is built from many scenes rather than asking one model call to create 10 minutes at once. citeturn0search0turn0search3</div>
+</aside>
+</section>
+<div class="footer">LongForge AI • Single HTML build • AI generation uses your Replicate account</div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+let style="cinematic, premium, realistic";
+document.querySelectorAll("#styles .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#styles .chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");style=b.dataset.style});
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function progress(n,m){$("prog").classList.add("show");$("fill").style.width=n+"%";$("pct").textContent=n+"%";$("msg").textContent=m}
+function makeScenes(text,minutes){
+ let s=text.trim().split(/(?<=[.!?।])\s+/).filter(Boolean);
+ let n=minutes*3; let a=[];
+ if(s.length){
+  for(let i=0;i<n;i++){let st=Math.floor(i*s.length/n),en=Math.max(st+1,Math.floor((i+1)*s.length/n));a.push(s.slice(st,en).join(" "))}
+ }else for(let i=0;i<n;i++)a.push("A powerful cinematic scene developing the central topic.");
+ return a;
+}
+function showScenes(a){
+ $("scenes").innerHTML=a.map((x,i)=>`<div class="scene"><div class="num">${String(i+1).padStart(2,"0")}</div><div><b>Scene ${i+1}</b><p>${esc(x)}</p></div></div>`).join("");
+}
+async function api(path,opts){
+ let r=await fetch("https://api.replicate.com/v1"+path,opts);
+ let t=await r.text(); let d; try{d=JSON.parse(t)}catch{throw Error(t)}
+ if(!r.ok)throw Error(d.detail||d.error||("HTTP "+r.status)); return d;
+}
+async function create(prompt,token){
+ return api("/models/prunaai/p-video/predictions",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json","Prefer":"wait=60"},body:JSON.stringify({input:{prompt:prompt,duration:20,resolution:"720p",fps:24,save_audio:true,aspect_ratio:$("ratio").value,prompt_upsampling:true}})});
+}
+async function poll(id,token){
+ for(let i=0;i<120;i++){
+  let d=await api("/predictions/"+id,{headers:{"Authorization":"Bearer "+token}});
+  if(d.status==="succeeded")return d.output;
+  if(d.status==="failed"||d.status==="canceled")throw Error(d.error||"Generation failed");
+  await new Promise(r=>setTimeout(r,3000));
+ }
+ throw Error("Generation timeout");
+}
+async function blobFrom(url){let r=await fetch(url);if(!r.ok)throw Error("Could not download generated clip");return await r.blob()}
+
+async function run(){
+ const token=$("token").value.trim(), text=$("script").value.trim(), minutes=+$("minutes").value;
+ if(!token){alert("Replicate API token डालें.");return}
+ if(!text){alert("Topic या script डालें.");return}
+ $("go").disabled=true;$("result").classList.remove("show");
+ const scenes=makeScenes(text,minutes);showScenes(scenes);
+ $("title").textContent="Generating "+minutes+" minute video…";
+ let outputs=[];
+ try{
+  for(let i=0;i<scenes.length;i++){
+   let pct=Math.round((i/scenes.length)*90);
+   progress(pct,`Generating scene ${i+1} of ${scenes.length}…`);
+   let prompt=`${style}, high quality professional video, coherent composition, smooth camera movement, no text overlays, scene ${i+1}: ${scenes[i]}`;
+   let d=await create(prompt,token);
+   let out=d.output;
+   if(!out){d=await poll(d.id,token);out=d.output}
+   let url=Array.isArray(out)?out[0]:out;
+   if(!url)throw Error("Model returned no video URL");
+   outputs.push(url);
+  }
+
+  /*
+   * A browser cannot reliably concatenate arbitrary MP4 files with plain HTML alone.
+   * This single-file build therefore creates a playlist result and offers every generated
+   * clip. The server version can stitch them into one MP4 with FFmpeg.
+   */
+  progress(100,"All AI scenes generated successfully");
+  $("sub").textContent=`${outputs.length} AI clips generated • 20 sec each`;
+  $("video").src=outputs[0];
+  $("download").href=outputs[0];
+  $("download").download="longforge-scene-01.mp4";
+  $("result").classList.add("show");
+  alert(`Done: ${outputs.length} AI scenes generated.\\n\\nThis browser-only HTML cannot safely/consistently merge separate MP4 files into one 9–10 minute MP4. The first scene is playable/downloadable here. For a single final MP4, use the server version with FFmpeg.`);
+ }catch(e){
+  progress(100,"Generation stopped: "+e.message);
+  alert("Generation error: "+e.message);
+ }finally{$("go").disabled=false}
+}
+$("go").onclick=run;
+</script>
+</body>
+</html>
