@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LongForge AI — Real Long Video Generator</title>
+<style>
+:root{--bg:#050914;--panel:#0b1424;--panel2:#101d31;--line:#203450;--text:#eef6ff;--muted:#8fa4bd;--a:#6d7cff;--b:#24d9ff;--ok:#2bd576;--warn:#ffbf47;--danger:#ff5571}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#172b55 0,transparent 35%),radial-gradient(circle at 100% 20%,#123b50 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:50px;height:50px;border-radius:15px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font-weight:900;box-shadow:0 12px 40px #0008}.brand h1{font-size:22px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.pill{padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:#b9c9dc;background:#091323}
+.panel{background:linear-gradient(145deg,#0c1728ee,#07101eee);border:1px solid #1c3049;border-radius:24px;padding:20px;margin:14px 0;box-shadow:0 20px 70px #0005,inset 0 1px #ffffff0b}
+h2{margin:0 0 16px;font-size:20px}label{display:block;color:#a9bad0;font-size:13px;margin:13px 0 7px}textarea,input,select{width:100%;border:1px solid #29415e;background:#07111f;color:var(--text);border-radius:14px;padding:13px 14px;outline:none;font:inherit}textarea{min-height:180px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--b);box-shadow:0 0 0 3px #24d9ff18}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.row{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:14px;padding:13px 17px;font-weight:800;cursor:pointer;color:white;background:linear-gradient(135deg,var(--a),#4b5eea);box-shadow:0 10px 30px #596bff22}.btn.secondary{background:#101f34;border:1px solid #2a405c}.btn.danger{background:#421827;border:1px solid #773047}.btn:disabled{opacity:.45;cursor:not-allowed}.note{font-size:12px;color:var(--muted);line-height:1.55}.dangerText{color:#ff8095}.status{display:flex;align-items:center;gap:10px;margin-top:14px}.dot{width:10px;height:10px;border-radius:50%;background:var(--muted)}.dot.busy{background:var(--warn);box-shadow:0 0 18px var(--warn)}.dot.ok{background:var(--ok);box-shadow:0 0 18px var(--ok)}.dot.err{background:var(--danger)}.bar{height:10px;background:#07101c;border:1px solid #21344b;border-radius:99px;overflow:hidden;margin:14px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:width .35s}.scenes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.scene{padding:12px;border:1px solid #1d3047;background:#081321;border-radius:15px}.scene b{display:block;margin-bottom:4px}.scene small{color:var(--muted);line-height:1.4}.videoBox{background:#02060c;border:1px solid #223751;border-radius:18px;overflow:hidden}.videoBox video{display:block;width:100%;max-height:620px;background:#000}.download{display:inline-block;text-decoration:none}.hidden{display:none!important}@media(max-width:720px){.wrap{padding:12px}.grid,.scenes{grid-template-columns:1fr 1fr}.top{align-items:flex-start}.panel{padding:15px;border-radius:20px}}@media(max-width:470px){.grid,.scenes{grid-template-columns:1fr}.brand h1{font-size:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="logo">LF</div><div><h1>LongForge AI</h1><p>Real long-form AI video studio</p></div></div>
+    <div class="pill">REAL RENDER MODE</div>
+  </header>
+
+  <section class="panel">
+    <h2>🎬 Create a 9–10 minute video</h2>
+    <label>Topic / Script</label>
+    <textarea id="prompt" placeholder="Paste your complete script or describe the video you want. Example: A deep motivational story about discipline, cinematic USA male voice-over, realistic scenes..."></textarea>
+
+    <div class="grid">
+      <div><label>Target duration</label><select id="duration"><option value="540">9 minutes</option><option value="600" selected>10 minutes</option></select></div>
+      <div><label>Aspect ratio</label><select id="ratio"><option>16:9</option><option>9:16</option><option>1:1</option></select></div>
+      <div><label>Quality</label><select id="quality"><option value="1080p" selected>1080p</option><option value="720p">720p</option></select></div>
+    </div>
+
+    <label>Secure backend endpoint</label>
+    <input id="endpoint" value="/api/generate" placeholder="https://your-domain.com/api/generate">
+    <p class="note">This page sends the request to your server. Your AI provider token must stay on the server — never put it in this HTML or GitHub.</p>
+
+    <div class="row" style="margin-top:16px">
+      <button class="btn" id="start">🚀 Generate real video</button>
+      <button class="btn secondary" id="stop" disabled>Stop polling</button>
+      <button class="btn secondary" id="clear">Clear</button>
+    </div>
+
+    <div class="status"><span class="dot" id="dot"></span><span id="status">Ready — no fake generation is shown.</span></div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="note" id="detail">The server must create the actual AI clips and return a real final MP4 URL.</div>
+  </section>
+
+  <section class="panel">
+    <h2>🧩 Scene plan</h2>
+    <div class="scenes" id="scenes"></div>
+  </section>
+
+  <section class="panel hidden" id="resultPanel">
+    <h2>🎥 Final video</h2>
+    <div class="videoBox"><video id="video" controls playsinline></video></div>
+    <div class="row" style="margin-top:14px">
+      <a id="download" class="btn download" download="LongForge-AI-Final.mp4">⬇️ Download MP4</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>⚠️ Important</h2>
+    <p class="note">A browser-only HTML file cannot securely run the Replicate API or FFmpeg rendering pipeline. Replicate's API does not support direct browser CORS access, and its token is a secret. A real deployment therefore needs a server/serverless endpoint. This HTML is the complete frontend; it deliberately does not fake a video when the backend is missing.</p>
+  </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let pollTimer=null, stopped=false;
+
+function scenePlan(seconds){
+  const count=Math.ceil(seconds/10);
+  const box=$('scenes'); box.innerHTML='';
+  for(let i=1;i<=Math.min(count,60);i++){
+    const s=document.createElement('div');s.className='scene';
+    const from=(i-1)*10,to=Math.min(i*10,seconds);
+    s.innerHTML='<b>Scene '+i+'</b><small>'+String(Math.floor(from/60)).padStart(2,'0')+':'+String(from%60).padStart(2,'0')+' → '+String(Math.floor(to/60)).padStart(2,'0')+':'+String(to%60).padStart(2,'0')+'</small>';
+    box.appendChild(s);
+  }
+}
+scenePlan(600); $('duration').onchange=e=>scenePlan(+e.target.value);
+
+function setState(text,kind=''){
+  $('status').textContent=text;$('dot').className='dot '+kind;
+}
+function setProgress(n){$('bar').style.width=Math.max(0,Math.min(100,n))+'%';}
+
+async function start(){
+  const prompt=$('prompt').value.trim();
+  if(!prompt){alert('Please enter a topic or script first.');return}
+  const endpoint=$('endpoint').value.trim();
+  if(!endpoint){alert('Please enter your backend endpoint.');return}
+  stopped=false;$('start').disabled=true;$('stop').disabled=false;$('resultPanel').classList.add('hidden');
+  setProgress(2);setState('Submitting real render job…','busy');$('detail').textContent='Waiting for the server to return a real job ID.';
+  try{
+    const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      prompt,duration_seconds:+$('duration').value,aspect_ratio:$('ratio').value,resolution:$('quality').value
+    })});
+    if(!r.ok) throw new Error('Backend returned HTTP '+r.status);
+    const data=await r.json();
+    if(!data.job_id && !data.id) throw new Error('Backend response has no job_id/id.');
+    await poll(data.job_id||data.id,endpoint);
+  }catch(e){
+    setState('Generation failed — '+e.message,'err');$('detail').textContent='No fake video was created. Fix the backend endpoint and try again.';setProgress(0);
+  }finally{$('start').disabled=false;$('stop').disabled=true}
+}
+
+async function poll(id,endpoint){
+  const base=endpoint.replace(/\/$/,'');
+  while(!stopped){
+    const r=await fetch(base+'/'+encodeURIComponent(id));
+    if(!r.ok) throw new Error('Status endpoint returned HTTP '+r.status);
+    const d=await r.json();
+    const p=Number(d.progress??0); if(Number.isFinite(p))setProgress(p);
+    setState(d.message||d.status||'Rendering…','busy');
+    if(d.output_url||d.video_url||d.url){
+      const url=d.output_url||d.video_url||d.url;
+      $('video').src=url;$('download').href=url;$('resultPanel').classList.remove('hidden');
+      setProgress(100);setState('Real MP4 is ready.','ok');$('detail').textContent='The video URL was returned by the backend.';
+      return;
+    }
+    if(['failed','error','canceled','cancelled'].includes(String(d.status).toLowerCase()))
+      throw new Error(d.error||'The server reported a failed render.');
+    await new Promise(r=>setTimeout(r,3000));
+  }
+  setState('Polling stopped.','');
+}
+$('start').onclick=start;
+$('stop').onclick=()=>{stopped=true;$('stop').disabled=true;setState('Polling stopped.','')};
+$('clear').onclick=()=>{$('prompt').value='';$('resultPanel').classList.add('hidden');setProgress(0);setState('Ready — no fake generation is shown.','');$('detail').textContent='The server must create the actual AI clips and return a real final MP4 URL.'};
+</script>
+</body>
+</html>
