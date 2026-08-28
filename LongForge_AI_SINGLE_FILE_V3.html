@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LongForge AI Studio V3</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui;background:#07111f;color:#eef6ff}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 15% 10%,#2563eb33,transparent 35%),radial-gradient(circle at 85% 20%,#06b6d433,transparent 32%);pointer-events:none}
+.app{max-width:1100px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border:1px solid #ffffff18;border-radius:22px;background:#0b1728dd;backdrop-filter:blur(18px);box-shadow:0 20px 70px #0007}
+.brand{font-weight:1000;font-size:22px;letter-spacing:.04em}.brand b{color:#5eead4}.tag{font-size:11px;color:#93c5fd}
+.hero{margin-top:18px;padding:28px;border-radius:30px;background:linear-gradient(135deg,#123a80,#0b8fbf);box-shadow:0 25px 80px #0008;overflow:hidden}
+h1{font-size:clamp(34px,6vw,64px);margin:0 0 8px;line-height:.95}.hero p{color:#d8f2ff;max-width:700px}
+.grid{display:grid;grid-template-columns:1.5fr .8fr;gap:16px;margin-top:16px}.card{background:#0c192bdf;border:1px solid #ffffff18;border-radius:24px;padding:18px;box-shadow:0 18px 50px #0006}
+label{display:block;font-size:12px;color:#9fb5ce;margin:12px 0 7px;font-weight:800}textarea,select{width:100%;border:1px solid #ffffff18;background:#071321;color:#fff;border-radius:15px;padding:14px;font:inherit}textarea{min-height:280px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{width:100%;border:0;border-radius:16px;padding:15px;font-weight:1000;background:linear-gradient(135deg,#fbbf24,#f97316);color:#151515;margin-top:15px;box-shadow:0 10px 30px #f59e0b44}.btn:disabled{opacity:.5}
+.status{margin-top:15px;padding:14px;border-radius:14px;background:#071321;color:#9fe7ff;font-size:13px}.scene{padding:10px;border-bottom:1px solid #ffffff10;font-size:12px;color:#b9cbe0}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.hero{padding:22px}.app{padding:10px}.row{grid-template-columns:1fr}.top{border-radius:17px}}
+</style></head><body><div class="app">
+<header class="top"><div><div class="brand">LONGFORGE <b>AI</b></div><div class="tag">REAL LONG-FORM VIDEO STUDIO • V3</div></div><div>🎬</div></header>
+<section class="hero"><h1>Text → Long Video</h1><p>Build a 9–10 minute project from one script. The browser creates the scene plan; the secure server handles AI rendering and FFmpeg stitching.</p></section>
+<div class="grid"><section class="card"><label>YOUR SCRIPT / STORY</label><textarea id="script" placeholder="Paste your complete script here..."></textarea>
+<div class="row"><div><label>VIDEO LENGTH</label><select id="duration"><option value="540">9 minutes</option><option value="600" selected>10 minutes</option></select></div>
+<div><label>FORMAT</label><select><option>16:9 Landscape</option><option>9:16 Shorts</option><option>1:1 Square</option></select></div></div>
+<button class="btn" id="generate">🚀 CREATE LONG VIDEO</button><div class="status" id="status">Ready — enter your script and start.</div></section>
+<aside class="card"><h3>Generation Pipeline</h3><div class="scene">01 • Script analysis</div><div class="scene">02 • Automatic scene planning</div><div class="scene">03 • AI video generation</div><div class="scene">04 • MP4 scene collection</div><div class="scene">05 • FFmpeg stitching</div><div class="scene">06 • Final 9–10 minute MP4</div><p class="tag">API keys stay on the server, not in the HTML.</p></aside></div>
+<div class="card" style="margin-top:16px">
+<label>SECURE RENDER SERVER URL</label>
+<input id="server" style="width:100%;border:1px solid #ffffff18;background:#071321;color:#fff;border-radius:15px;padding:14px;font:inherit" placeholder="https://your-render-server.example.com">
+<div class="tag" style="margin-top:8px">One HTML file • AI rendering runs on the secure server.</div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+$("generate").onclick=async()=>{
+ const script=$("script").value.trim(); if(!script)return $("status").textContent="Please paste a script first.";
+ const duration=+$("duration").value; $("generate").disabled=true; $("status").textContent="Planning scenes...";
+ try{
+  const base=($("server").value||"").trim().replace(/\/$/,"");
+  if(!base) throw Error("Enter your secure render server URL.");
+  const p=await fetch(base+"/api/plan",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({script,duration})}).then(r=>r.json());
+  if(p.error)throw Error(p.error);
+  $("status").textContent=`${p.scenes.length} scenes planned. Starting secure render job...`;
+  const r=await fetch(base+"/api/render",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({duration,scenes:p.scenes})}).then(x=>x.json());
+  if(r.error)throw Error(r.error);
+  $("status").textContent=`Job ${r.job} created. ${r.message}`;
+ }catch(e){$("status").textContent="Error: "+e.message}finally{$("generate").disabled=false}
+};
+</script></body></html>
