@@ -1,253 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b1020">
-<title>LongForge — Text to Long Video</title>
+<title>LongForge Pro — AI Long Video Studio</title>
 <style>
-*{box-sizing:border-box}
-:root{--bg:#070b16;--panel:#0e1527;--panel2:#121b31;--line:#22304d;--text:#f5f7ff;--muted:#8f9bb5;--accent:#7c5cff;--accent2:#20d9c3;--danger:#ff5c78}
-body{margin:0;background:radial-gradient(circle at 20% 0%,#17234b 0,#070b16 38%),#070b16;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
-button,input,textarea,select{font:inherit}
-.app{max-width:1450px;margin:auto;padding:22px}
-.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
-.logo{display:flex;gap:11px;align-items:center}.logoMark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#7c5cff,#20d9c3);display:grid;place-items:center;font-weight:1000;box-shadow:0 10px 30px #7c5cff44}.logo b{font-size:19px}.logo small{display:block;color:var(--muted);margin-top:2px}
-.badge{padding:8px 12px;border:1px solid #2b3b5e;background:#0d1527;border-radius:999px;color:#b9c4db;font-size:12px}
-.layout{display:grid;grid-template-columns:390px 1fr;gap:18px}
-.panel{background:linear-gradient(180deg,#111a2d,#0c1323);border:1px solid var(--line);border-radius:22px;box-shadow:0 24px 80px #0007}
-.controls{padding:20px;position:sticky;top:14px;height:max-content}
-h1{font-size:25px;margin:0 0 7px}.sub{color:var(--muted);font-size:13px;line-height:1.55;margin:0 0 18px}
-label{display:block;font-size:12px;font-weight:800;color:#cbd4e7;margin:15px 0 7px}
-textarea,input,select{width:100%;border:1px solid #283858;background:#0a1120;color:#f5f7ff;border-radius:12px;padding:12px;outline:none}
-textarea{min-height:180px;resize:vertical;line-height:1.5}
-textarea:focus,input:focus,select:focus{border-color:#6e5bff;box-shadow:0 0 0 3px #7c5cff1c}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.duration{display:flex;gap:8px}.duration button{flex:1;padding:10px;border:1px solid #293858;background:#0b1221;color:#cbd4e7;border-radius:10px;cursor:pointer}.duration button.active{background:linear-gradient(135deg,#7c5cff,#5b7cff);border-color:transparent;color:#fff}
-.generate{width:100%;margin-top:18px;padding:14px;border:0;border-radius:13px;background:linear-gradient(135deg,#7c5cff,#20bfe0);color:white;font-weight:1000;cursor:pointer;box-shadow:0 14px 30px #7c5cff3d}
-.generate:disabled{opacity:.55;cursor:not-allowed}
-.note{font-size:11px;color:#77849e;line-height:1.5;margin-top:12px}
-.workspace{padding:18px}
-.preview{background:#050812;border:1px solid #202d49;border-radius:18px;overflow:hidden}
-.previewTop{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #1e2a44}
-.previewTitle{font-weight:900}.status{font-size:12px;color:#8e9ab3}
-#canvas{display:block;width:100%;aspect-ratio:16/9;background:#050812}
-.progressWrap{padding:12px 14px;border-top:1px solid #1e2a44}.bar{height:7px;background:#18233a;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c5cff,#20d9c3);border-radius:99px;transition:width .1s}.time{display:flex;justify-content:space-between;color:#7f8ba3;font-size:11px;margin-top:7px}
-.section{margin-top:18px;padding:16px;background:#0c1323;border:1px solid var(--line);border-radius:18px}
-.section h2{font-size:15px;margin:0 0 12px}.sceneList{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.scene{border:1px solid #202d48;border-radius:13px;padding:11px;background:#0d1628;min-height:105px}.scene b{font-size:12px}.scene span{display:block;color:#7f8ca5;font-size:11px;margin-top:5px;line-height:1.45}.scene.active{border-color:#7c5cff;background:#141d36;box-shadow:0 0 0 1px #7c5cff33}
-.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.action{border:1px solid #293858;background:#0b1221;color:#d7def0;border-radius:10px;padding:10px 13px;cursor:pointer}.action.primary{background:#172344;border-color:#475fa4}
-.footer{color:#68758f;text-align:center;font-size:11px;padding:20px}
-@media(max-width:900px){.layout{grid-template-columns:1fr}.controls{position:relative;top:0}.sceneList{grid-template-columns:1fr}}
+:root{--bg:#070a12;--panel:#101522;--panel2:#151b2a;--text:#eef3ff;--muted:#91a0bb;--a:#7c5cff;--b:#18c8ff;--line:#263149}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#19234b 0,#070a12 40%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+.wrap{max-width:1050px;margin:auto;padding:24px}.brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}.logo{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font-weight:900;font-size:21px;box-shadow:0 12px 40px #4d65ff40}.brand h1{margin:0;font-size:25px}.brand p{margin:3px 0;color:var(--muted)}
+.card{background:linear-gradient(180deg,#111827e8,#0d1320e8);border:1px solid var(--line);border-radius:22px;padding:20px;margin:14px 0;box-shadow:0 18px 60px #0005}.grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}@media(max-width:760px){.grid{grid-template-columns:1fr}.wrap{padding:14px}}
+label{display:block;font-size:13px;color:#b8c4dc;margin:0 0 7px}textarea,input,select{width:100%;border:1px solid var(--line);background:#080d18;color:var(--text);border-radius:13px;padding:13px;font:inherit;outline:none}textarea{min-height:310px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:var(--a)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.btn{border:0;border-radius:13px;padding:14px 17px;font-weight:800;cursor:pointer;color:white;background:linear-gradient(135deg,var(--a),#4c8dff);box-shadow:0 10px 28px #5d63ff35}.btn.secondary{background:#192236;border:1px solid var(--line);box-shadow:none}.btn:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.hint{font-size:12px;color:var(--muted);line-height:1.55}.status{padding:13px;border-radius:13px;background:#080d18;border:1px solid var(--line);margin-top:14px}.bar{height:10px;background:#080d18;border-radius:20px;overflow:hidden;border:1px solid var(--line)}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:width .2s}.scene{padding:12px;border:1px solid var(--line);border-radius:13px;background:#0a0f1b;margin-top:8px}.scene b{font-size:13px}.small{font-size:12px;color:var(--muted);margin-top:4px}.warn{color:#ffd37a}.ok{color:#75f0b1}
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="nav">
-    <div class="logo"><div class="logoMark">LF</div><div><b>LongForge</b><small>Text → Long Video Studio</small></div></div>
-    <div class="badge">9–10 MIN • 16:9 • ONE-CLICK RENDER</div>
+<div class="wrap">
+  <div class="brand"><div class="logo">LF</div><div><h1>LongForge Pro</h1><p>AI Long-Form Video Studio</p></div></div>
+
+  <div class="card">
+    <div class="grid">
+      <div>
+        <label>YOUR SCRIPT / TEXT</label>
+        <textarea id="script" placeholder="Paste your complete script here...&#10;&#10;Example: Today we're going to discover..."></textarea>
+        <div class="hint">The generator splits your script into scenes automatically. For a true AI render, connect the APIs in the settings below.</div>
+      </div>
+      <div>
+        <label>VIDEO SETTINGS</label>
+        <div class="row"><div><label>Duration</label><select id="duration"><option value="540">9:00</option><option value="570" selected>9:30</option><option value="600">10:00</option></select></div><div><label>Format</label><select id="format"><option>16:9 YouTube</option><option>9:16 Shorts</option><option>1:1 Square</option></select></div></div>
+        <div class="row"><div><label>Visual Style</label><select id="style"><option>Cinematic</option><option>Documentary</option><option>Motivational</option><option>Educational</option><option>Storytelling</option></select></div><div><label>Voice</label><select id="voice"><option>USA Male — Energetic</option><option>USA Male — Deep</option><option>USA Female — Warm</option><option>USA Female — Professional</option></select></div></div>
+        <div class="row"><div><label>Music</label><select id="music"><option>Deep Cinematic</option><option>Motivational</option><option>Documentary</option><option>None</option></select></div><div><label>Captions</label><select id="captions"><option>On</option><option>Off</option></select></div></div>
+        <label>AI API Endpoint (optional)</label><input id="endpoint" placeholder="https://your-server.example/api/generate">
+        <label style="margin-top:10px">API Key (stored only in this browser)</label><input id="key" type="password" placeholder="Paste your API key">
+        <div class="hint warn" style="margin-top:8px">Never put a secret provider key in public GitHub HTML. Use a server/proxy endpoint for production.</div>
+        <div class="actions"><button class="btn" id="generate">Generate 9–10 Min Video</button><button class="btn secondary" id="demo">Preview Scene Plan</button></div>
+      </div>
+    </div>
   </div>
 
-  <div class="layout">
-    <aside class="panel controls">
-      <h1>Long Video Generator</h1>
-      <p class="sub">Write one topic or paste a full script. LongForge automatically turns it into a structured 9–10 minute scene timeline.</p>
-
-      <label>VIDEO TOPIC / SCRIPT</label>
-      <textarea id="prompt" placeholder="Example: The mindset habits that separate successful people from everyone else..."></textarea>
-
-      <div class="row">
-        <div>
-          <label>VOICE</label>
-          <select id="voice">
-            <option>USA Male — Deep & Energetic</option>
-            <option>USA Female — Warm & Professional</option>
-            <option>USA Male — Calm Documentary</option>
-            <option>USA Female — Motivational</option>
-          </select>
-        </div>
-        <div>
-          <label>STYLE</label>
-          <select id="style">
-            <option>Cinematic</option>
-            <option>Motivational</option>
-            <option>Documentary</option>
-            <option>Educational</option>
-            <option>Storytelling</option>
-          </select>
-        </div>
-      </div>
-
-      <label>DURATION</label>
-      <div class="duration">
-        <button data-sec="540">9:00</button>
-        <button data-sec="570" class="active">9:30</button>
-        <button data-sec="600">10:00</button>
-      </div>
-
-      <label>ASPECT RATIO</label>
-      <select id="ratio"><option>16:9 Landscape</option><option>9:16 Vertical</option><option>1:1 Square</option></select>
-
-      <button class="generate" id="generate">⚡ Generate Long Video</button>
-      <div class="note">Important: this single-file version renders an animated video locally in your browser. True AI-generated photorealistic scenes and cloud voice generation require an AI video/TTS API connected to the app.</div>
-    </aside>
-
-    <main class="panel workspace">
-      <div class="preview">
-        <div class="previewTop"><div class="previewTitle">Live Video Preview</div><div class="status" id="status">Ready</div></div>
-        <canvas id="canvas" width="1280" height="720"></canvas>
-        <div class="progressWrap"><div class="bar"><i id="progress"></i></div><div class="time"><span id="elapsed">00:00</span><span id="total">09:30</span></div></div>
-      </div>
-
-      <div class="section">
-        <h2>Generated Scene Timeline</h2>
-        <div class="sceneList" id="scenes"><div class="scene"><b>Waiting for generation…</b><span>Enter your topic and press Generate Long Video.</span></div></div>
-        <div class="actions">
-          <button class="action primary" id="download" disabled>⬇ Export WebM</button>
-          <button class="action" id="reset">↻ Reset</button>
-        </div>
-      </div>
-    </main>
+  <div class="card">
+    <b>Generation</b>
+    <div class="status" id="status">Ready. Add a script and click Generate.</div>
+    <div class="bar" style="margin-top:10px"><div class="fill" id="fill"></div></div>
+    <div id="scenes"></div>
+    <div class="actions"><button class="btn secondary" id="download" disabled>Download Rendered Video</button></div>
   </div>
-  <div class="footer">LongForge • Browser-based long-video prototype • No external libraries required</div>
+
+  <div class="card">
+    <b>How the real AI pipeline works</b>
+    <p class="hint">Browser → your secure backend → script segmentation → AI image/video generation → TTS voice → music → captions → FFmpeg render → MP4. This page is the frontend and includes a working scene-plan/demo renderer; an actual AI provider endpoint is required for real generated visuals and voice.</p>
+  </div>
 </div>
-
 <script>
 const $=id=>document.getElementById(id);
-let duration=570, rendering=false, mediaRecorder=null, chunks=[], raf=0, start=0, stream=null;
-
-document.querySelectorAll('.duration button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.duration button').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active'); duration=+b.dataset.sec;
-  $('total').textContent=fmt(duration);
-});
-
-function fmt(s){s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
-function hash(s){let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h)}
-function makeScenes(text){
-  const seed=hash(text||'LongForge');
-  const words=(text||'Your powerful story begins here.').trim().split(/\s+/);
-  const count=Math.max(12,Math.min(18,Math.round(duration/34)));
-  const labels=['HOOK','THE PROBLEM','WHY IT MATTERS','THE SHIFT','KEY IDEA #1','KEY IDEA #2','KEY IDEA #3','REAL-WORLD EXAMPLE','THE TURNING POINT','DEEP DIVE','COMMON MISTAKE','BETTER APPROACH','ACTION STEP #1','ACTION STEP #2','ACTION STEP #3','THE BIG LESSON','FINAL PUSH','OUTRO'];
-  const scenes=[];
-  for(let i=0;i<count;i++){
-    const a=Math.floor(i*words.length/count), b=Math.max(a+1,Math.floor((i+1)*words.length/count));
-    let line=words.slice(a,b).join(' ');
-    if(line.length<45) line=(words.slice(Math.max(0,a-8),Math.min(words.length,b+8)).join(' '));
-    scenes.push({title:labels[i]||('SCENE '+(i+1)),text:line||'A new chapter of the story unfolds.',seed:seed+i*97,dur:duration/count});
-  }
-  return scenes;
-}
-let scenes=[];
-
-function draw(t, sceneIndex=0, local=0){
-  const c=$('canvas'),ctx=c.getContext('2d'),w=c.width,h=c.height;
-  const s=scenes[sceneIndex]||{title:'LONGFORGE',text:'Your story starts now.',seed:7};
-  const k=(s.seed%1000)/1000;
-  const grad=ctx.createLinearGradient(0,0,w,h);
-  const palettes=[
-    ['#07132d','#142f6b','#0bc7c0'],['#180b32','#48208a','#ff5f91'],
-    ['#071d1b','#126e63','#58e6bb'],['#17110a','#714516','#ffc857'],
-    ['#090d18','#253a70','#8f7cff']
-  ][s.seed%5];
-  grad.addColorStop(0,palettes[0]);grad.addColorStop(.55,palettes[1]);grad.addColorStop(1,palettes[2]);
-  ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
-
-  // animated cinematic glow/orbs
-  for(let i=0;i<8;i++){
-    const x=w*(.1+((i*1.73+k)%1)*.9), y=h*(.1+((i*.91+k+local*.025)%1)*.85);
-    const r=35+55*((i*17+s.seed)%100)/100;
-    const g=ctx.createRadialGradient(x,y,0,x,y,r);
-    g.addColorStop(0,'rgba(255,255,255,.10)');g.addColorStop(1,'rgba(255,255,255,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
-  }
-
-  ctx.fillStyle='rgba(0,0,0,.30)';ctx.fillRect(0,0,w,h);
-  ctx.fillStyle='#ffffff';ctx.font='800 28px Inter,Arial';ctx.fillText('LONGFORGE • '+$('style').value.toUpperCase(),70,75);
-  ctx.fillStyle='#9feee8';ctx.font='800 19px Inter,Arial';ctx.fillText(s.title,70,125);
-
-  // large title
-  ctx.fillStyle='#fff';ctx.font='900 62px Inter,Arial';
-  const title=s.title;
-  ctx.fillText(title,70,230);
-
-  // script text, wrapped
-  ctx.font='500 25px Inter,Arial';ctx.fillStyle='rgba(255,255,255,.88)';
-  const max=760, words=s.text.split(/\s+/);let line='',yy=300;
-  for(const word of words){
-    const test=line?line+' '+word:word;
-    if(ctx.measureText(test).width>max){ctx.fillText(line,70,yy);yy+=38;line=word;if(yy>430)break}else line=test;
-  }
-  if(line&&yy<=430)ctx.fillText(line,70,yy);
-
-  // right-side animated "video" panel
-  const px=w-400, py=150, pw=300, ph=300;
-  ctx.save();ctx.translate(px+pw/2,py+ph/2);ctx.rotate(Math.sin(t*.0006+s.seed)*.025);
-  const rr=28;ctx.beginPath();ctx.roundRect(-pw/2,-ph/2,pw,ph,rr);ctx.clip();
-  const imgG=ctx.createLinearGradient(-pw/2,-ph/2,pw/2,ph/2);imgG.addColorStop(0,'#ffffff22');imgG.addColorStop(1,'#00000033');ctx.fillStyle=imgG;ctx.fillRect(-pw/2,-ph/2,pw,ph);
-  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(Math.sin(t*.001+s.seed)*65,Math.cos(t*.0011+s.seed)*65,42,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#07132d';ctx.beginPath();ctx.arc(Math.sin(t*.001+s.seed)*65-12,Math.cos(t*.0011+s.seed)*65-5,7,0,Math.PI*2);ctx.fill();
-  ctx.beginPath();ctx.arc(Math.sin(t*.001+s.seed)*65+12,Math.cos(t*.0011+s.seed)*65-5,7,0,Math.PI*2);ctx.fill();
-  ctx.restore();
-
-  ctx.fillStyle='rgba(255,255,255,.62)';ctx.font='600 16px Inter,Arial';ctx.fillText($('voice').value,70,h-70);
-  ctx.fillStyle='rgba(255,255,255,.45)';ctx.font='500 14px Inter,Arial';ctx.fillText('Scene '+(sceneIndex+1)+' / '+scenes.length+'   •   '+fmt(local),w-330,h-70);
-}
-
-function showScenes(){
-  $('scenes').innerHTML=scenes.map((s,i)=>`<div class="scene" id="scene${i}"><b>${i+1}. ${escapeHtml(s.title)}</b><span>${escapeHtml(s.text.slice(0,150))}${s.text.length>150?'…':''}</span></div>`).join('');
-}
-function escapeHtml(x){return String(x).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]) )}
-
-async function generate(){
-  if(rendering)return;
-  const text=$('prompt').value.trim();
-  if(!text){alert('Please enter a topic or script first.');return}
-  rendering=true;$('generate').disabled=true;$('download').disabled=true;$('status').textContent='Generating timeline…';
-  scenes=makeScenes(text);showScenes();
-  await new Promise(r=>setTimeout(r,500));
-  chunks=[];start=performance.now();
-  try{
-    stream=$('canvas').captureStream(30);
-    mediaRecorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9'});
-  }catch(e){
-    stream=$('canvas').captureStream(30);
-    mediaRecorder=new MediaRecorder(stream);
-  }
-  mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
-  mediaRecorder.onstop=()=>{
-    const blob=new Blob(chunks,{type:'video/webm'});
-    $('download').disabled=false;$('download').onclick=()=>{
-      const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='LongForge_'+duration+'s.webm';a.click();
-      setTimeout(()=>URL.revokeObjectURL(a.href),5000);
-    };
-    $('status').textContent='Render complete • Export ready';
-    $('generate').disabled=false;rendering=false;
-  };
-  mediaRecorder.start(1000);
-  tick();
-}
-function tick(){
-  if(!rendering)return;
-  const elapsed=(performance.now()-start)/1000;
-  const p=Math.min(1,elapsed/duration);
-  const pos=p*duration;
-  let acc=0,idx=0;
-  for(let i=0;i<scenes.length;i++){if(pos>=acc && pos<acc+scenes[i].dur){idx=i;break}acc+=scenes[i].dur}
-  const local=Math.max(0,pos-acc);
-  draw(performance.now(),idx,local);
-  document.querySelectorAll('.scene').forEach((x,i)=>x.classList.toggle('active',i===idx));
-  $('progress').style.width=(p*100)+'%';$('elapsed').textContent=fmt(pos);
-  $('status').textContent='Rendering • '+Math.round(p*100)+'%';
-  if(elapsed>=duration){
-    rendering=false;draw(performance.now(),scenes.length-1,scenes.at(-1).dur);
-    mediaRecorder.stop();if(stream)stream.getTracks().forEach(t=>t.stop());return;
-  }
-  raf=requestAnimationFrame(tick);
-}
-$('reset').onclick=()=>{if(rendering)return;location.reload()};
-$('generate').onclick=generate;
-draw(0,0,0);
+function splitScript(t,n){let s=t.replace(/\s+/g,' ').trim(); if(!s)return []; let words=s.split(' '), count=Math.max(1,Math.ceil(words.length/(n/7))); let out=[]; for(let i=0;i<words.length;i+=count)out.push(words.slice(i,i+count).join(' ')); return out;}
+function scenePlan(){let t=$('script').value;let dur=+$('duration').value;let parts=splitScript(t,dur); if(!parts.length){alert('Please paste your script first.');return []} let target=Math.max(1,Math.round(dur/7)); if(parts.length>target)parts=parts.slice(0,target); return parts.map((x,i)=>({i:i+1,text:x,time:Math.min(7,dur/(parts.length))}));}
+function showPlan(){let p=scenePlan(); if(!p.length)return; $('scenes').innerHTML=p.map(x=>`<div class="scene"><b>Scene ${x.i}</b><div class="small">${x.text}</div></div>`).join(''); $('status').innerHTML=`<span class="ok">Scene plan ready:</span> ${p.length} scenes for ${$('duration').selectedOptions[0].text}.`;}
+$('demo').onclick=showPlan;
+$('generate').onclick=async()=>{
+ let script=$('script').value.trim(); if(!script){alert('Please paste your script first.');return}
+ let endpoint=$('endpoint').value.trim(); let plan=scenePlan(); showPlan();
+ $('generate').disabled=true;$('download').disabled=true;
+ if(endpoint){
+   $('status').textContent='Sending secure generation request to your AI backend…'; $('fill').style.width='8%';
+   try{
+    let r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({script,duration:+$('duration').value,format:$('format').value,style:$('style').value,voice:$('voice').value,music:$('music').value,captions:$('captions').value,scenes:plan})});
+    if(!r.ok)throw Error('API returned '+r.status);
+    let data=await r.json(); $('fill').style.width='100%'; $('status').innerHTML='<span class="ok">AI job submitted successfully.</span> '+(data.message||'Check your backend job status.');
+    if(data.videoUrl){$('download').disabled=false;$('download').onclick=()=>location.href=data.videoUrl;}
+   }catch(e){$('status').innerHTML='<span class="warn">Backend error:</span> '+e.message+' — check the endpoint and CORS.';}
+   $('generate').disabled=false;return;
+ }
+ $('status').innerHTML='<span class="warn">Demo render:</span> no AI backend is connected. Creating a browser preview video so the button works.';
+ let canvas=document.createElement('canvas'); canvas.width=1280;canvas.height=720; let ctx=canvas.getContext('2d'); let stream=canvas.captureStream(30); let rec=new MediaRecorder(stream,{mimeType:'video/webm'}), chunks=[]; rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)}; rec.onstop=()=>{let blob=new Blob(chunks,{type:'video/webm'});let u=URL.createObjectURL(blob);$('download').disabled=false;$('download').onclick=()=>{let a=document.createElement('a');a.href=u;a.download='longforge-preview.webm';a.click()};$('status').innerHTML='<span class="ok">Preview video ready.</span> Connect an AI backend to render real AI scenes, voice and MP4.';$('generate').disabled=false};
+ rec.start(); let start=performance.now(), total=+ $('duration').value*1000, frame;
+ function draw(now){let elapsed=now-start, pct=Math.min(100,elapsed/total*100); $('fill').style.width=pct+'%'; let idx=Math.min(plan.length-1,Math.floor(elapsed/7000)); ctx.fillStyle='#070a12';ctx.fillRect(0,0,1280,720);let g=ctx.createLinearGradient(0,0,1280,720);g.addColorStop(0,'#3420a8');g.addColorStop(1,'#08a8d8');ctx.fillStyle=g;ctx.fillRect(0,0,1280,720);ctx.fillStyle='white';ctx.font='bold 52px Arial';ctx.fillText('LONGFORGE PRO',70,110);ctx.font='bold 38px Arial';let text=plan[idx]?.text||'Generating scene...';let words=text.split(' '),line='',y=300;for(let w of words){if((line+w).length>38){ctx.fillText(line,70,y);y+=55;line=''}line+=w+' '}ctx.fillText(line,70,y);ctx.font='24px Arial';ctx.fillText(`Scene ${idx+1}/${plan.length}  •  ${Math.round(pct)}%`,70,630); if(elapsed<total)frame=requestAnimationFrame(draw);else rec.stop();}
+ frame=requestAnimationFrame(draw);
+};
 </script>
-</body>
-</html>
+</body></html>
