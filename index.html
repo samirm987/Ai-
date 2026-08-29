@@ -3,80 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TextForge — AI Text to Video</title>
+<title>TextForge Studio — Real AI Text to Video</title>
 <style>
-:root{--bg:#070a12;--panel:#101522;--panel2:#151b2b;--line:#29334b;--text:#f6f7fb;--muted:#8d98ad;--a:#7c4dff;--b:#00b7ff;--good:#37d67a}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#20234c 0,#070a12 42%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial}
-.app{max-width:1250px;margin:auto;padding:18px}.brand{display:flex;align-items:center;gap:12px}.mark{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font-weight:950;box-shadow:0 12px 35px #00b7ff22}h1{font-size:22px;margin:0}.sub{font-size:12px;color:var(--muted)}
-.nav{display:flex;gap:8px;margin:20px 0}.pill{padding:9px 13px;border:1px solid var(--line);border-radius:999px;color:#b9c3d7;font-size:12px}.pill.active{background:#1a2140;color:#fff;border-color:#5754a8}
-.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}@media(max-width:850px){.layout{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,#111827ee,#0d1320ee);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 20px 60px #0005}
-h2{font-size:16px;margin:0 0 14px}label{display:block;color:#aeb8ca;font-size:11px;font-weight:700;letter-spacing:.08em;margin:12px 0 6px}
-input,textarea,select{width:100%;background:#080d18;border:1px solid #2b3650;border-radius:12px;color:#fff;padding:12px;font:inherit;outline:none}textarea{min-height:220px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:#6974ff;box-shadow:0 0 0 3px #6974ff18}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
-.btn{width:100%;border:0;border-radius:13px;padding:14px;color:#fff;font-weight:900;cursor:pointer;background:linear-gradient(100deg,var(--a),var(--b));box-shadow:0 12px 30px #684cff30}.btn:disabled{opacity:.45;cursor:not-allowed}
-.preview{aspect-ratio:16/9;border-radius:16px;border:1px solid #33415f;background:#060912;display:grid;place-items:center;overflow:hidden;position:relative}.previewText{text-align:center;max-width:85%;font-weight:900;font-size:clamp(18px,3vw,36px);line-height:1.1}.previewText small{display:block;color:#9da8bc;font-size:11px;font-weight:500;margin-top:12px}
-.status{margin-top:12px;border:1px solid var(--line);background:#080d18;border-radius:12px;padding:11px;font-size:12px;color:#b8c2d5}.bar{height:8px;border-radius:99px;background:#080d18;border:1px solid #29344c;overflow:hidden;margin-top:9px}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:.25s}
-.scene{margin-top:8px;padding:9px;border:1px solid #28344d;border-radius:10px;background:#0a101c;font-size:11px;color:#aeb9cd}.scene b{color:#fff}.notice{font-size:11px;line-height:1.5;color:#cbd3e2;background:#17152a;border:1px solid #393461;padding:11px;border-radius:11px;margin-bottom:12px}.download{display:none;text-decoration:none;text-align:center;margin-top:10px}
+:root{--bg:#070b14;--panel:#0e1524;--line:#26324a;--text:#f5f7fb;--muted:#9aa7bd;--a:#7c4dff;--b:#12b8ff;--good:#22c55e;--bad:#ef4444}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#17234a 0,#070b14 42%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}
+.wrap{max-width:1050px;margin:auto;padding:24px 16px 60px}.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;font-weight:900}.brand h1{margin:0;font-size:22px}.brand p{margin:3px 0;color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:rgba(14,21,36,.92);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 18px 60px #0007}.card h2{margin:0 0 15px;font-size:18px}
+label{display:block;color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:13px 0 7px}
+input,textarea,select{width:100%;background:#090f1c;border:1px solid #2a3852;color:var(--text);border-radius:12px;padding:12px;font:inherit;outline:none}textarea{min-height:220px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:#7c4dff;box-shadow:0 0 0 3px #7c4dff22}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:520px){.row{grid-template-columns:1fr}}
+button{border:0;border-radius:13px;padding:13px 16px;font-weight:800;color:#fff;background:linear-gradient(100deg,var(--a),var(--b));width:100%;cursor:pointer;margin-top:16px}button:disabled{opacity:.5;cursor:not-allowed}
+.note{font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px}.status{margin-top:14px;border:1px solid var(--line);border-radius:14px;padding:13px;background:#080e1a}.bar{height:8px;background:#182238;border-radius:99px;overflow:hidden;margin-top:10px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a),var(--b));transition:width .3s}
+video{width:100%;border-radius:16px;background:#02050a;max-height:540px}.hidden{display:none}.err{color:#fecaca}.ok{color:#bbf7d0}.small{font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="app">
-<header class="brand"><div class="mark">TF</div><div><h1>TextForge AI</h1><div class="sub">VEED-style text-to-video studio</div></div></header>
-<div class="nav"><span class="pill active">Text to Video</span><span class="pill">My Projects</span><span class="pill">Templates</span></div>
-
-<div class="layout">
-<section class="card">
-<h2>Create a video from text</h2>
-<div class="notice">Write one instruction or paste a complete script. The generator sends your text and settings to the configured AI video service and returns a real MP4. This page itself does not pretend to generate AI video without a generation service.</div>
-<label>VIDEO PROMPT / SCRIPT</label>
-<textarea id="prompt" placeholder="Example: Create a cinematic 10-minute motivational video about discipline. Use powerful USA male narration, dramatic visuals, scene changes every few seconds, subtitles, and an emotional ending."></textarea>
-<div class="row">
-<div><label>CATEGORY</label><select id="cat"><option>General</option><option>Cooking</option><option>Motivation</option><option>Education</option><option>Business</option><option>Technology</option><option>Travel</option><option>Documentary</option><option>Kids</option><option>Storytelling</option><option>Fitness</option><option>News</option><option>Entertainment</option></select></div>
-<div><label>LANGUAGE</label><select id="lang"><option>English (USA)</option><option>Hindi</option><option>Bengali</option><option>Spanish</option><option>French</option><option>German</option><option>Portuguese</option><option>Japanese</option><option>Korean</option><option>Arabic</option><option>Urdu</option><option>Tamil</option><option>Telugu</option><option>Marathi</option><option>Gujarati</option><option>Punjabi</option></select></div>
-</div>
-<div class="row3">
-<div><label>DURATION</label><select id="duration"></select></div>
-<div><label>FORMAT</label><select id="ratio"><option value="16:9">16:9 Landscape</option><option value="9:16">9:16 Portrait</option><option value="1:1">1:1 Square</option></select></div>
-<div><label>STYLE</label><select id="style"><option>Cinematic</option><option>Ultra Realistic</option><option>3D</option><option>Documentary</option><option>Animation</option><option>Luxury</option></select></div>
-</div>
-<div class="row">
-<div><label>VOICE</label><select id="voice"><option>USA Male — Deep</option><option>USA Male — Energetic</option><option>USA Female — Professional</option><option>USA Female — Warm</option><option>Auto</option></select></div>
-<div><label>AI VIDEO API ENDPOINT</label><input id="endpoint" placeholder="https://your-server.example/generate"></div>
-</div>
-<label>API KEY (optional — preferably keep this on your server)</label>
-<input id="key" type="password" placeholder="Do not expose production keys in public HTML">
-<button class="btn" id="go" style="margin-top:15px">✨ Generate AI Video</button>
-</section>
-
-<aside class="card">
-<h2>Preview</h2>
-<div class="preview"><div class="previewText" id="pv">Your video preview<br><small>Enter a prompt to begin</small></div></div>
-<div class="status" id="status">Ready. Configure your AI video endpoint.</div>
-<div class="bar"><div class="fill" id="fill"></div></div>
-<div id="scenes"></div>
-<a id="download" class="btn download">⬇ Download MP4</a>
-</aside>
-</div>
+<div class="wrap">
+  <div class="brand"><div class="logo">TF</div><div><h1>TextForge Studio</h1><p>Real text → AI video pipeline</p></div></div>
+  <div class="grid">
+    <section class="card">
+      <h2>🎬 Create video</h2>
+      <label>Title</label><input id="title" placeholder="e.g. Never Give Up">
+      <label>Topic</label><input id="topic" placeholder="e.g. discipline, consistency and success">
+      <label>Full script</label><textarea id="script" placeholder="Paste the complete script here. For a 10-minute video, provide enough narration/script for about 10 minutes."></textarea>
+      <div class="row">
+        <div><label>Category</label><select id="category"><option>Motivation</option><option>Cooking</option><option>Education</option><option>Documentary</option><option>Business</option><option>Technology</option><option>Kids</option><option>Travel</option><option>Fitness</option><option>Other</option></select></div>
+        <div><label>Language</label><select id="language"><option>English (USA)</option><option>Hindi</option><option>Bengali</option><option>Spanish</option><option>French</option><option>German</option><option>Portuguese</option><option>Arabic</option><option>Japanese</option><option>Other</option></select></div>
+      </div>
+      <div class="row">
+        <div><label>Duration</label><select id="duration"></select></div>
+        <div><label>Aspect</label><select id="aspect"><option value="16:9">16:9 Landscape</option><option value="9:16">9:16 Portrait</option><option value="1:1">1:1 Square</option></select></div>
+      </div>
+      <div class="row">
+        <div><label>Visual style</label><select id="style"><option>Cinematic</option><option>Ultra realistic</option><option>3D</option><option>Documentary</option><option>Anime</option><option>Product commercial</option></select></div>
+        <div><label>Clip length</label><select id="clip"><option value="5">5 sec</option><option value="8">8 sec</option><option value="10">10 sec</option></select></div>
+      </div>
+      <label>Runway API key (server-side recommended)</label><input id="key" type="password" placeholder="Optional only for local testing">
+      <button id="go">✨ Generate REAL MP4</button>
+      <div class="note">The browser never pretends to generate a video. It sends the job to your backend, which creates AI clips and stitches them with FFmpeg.</div>
+      <div id="status" class="status">Ready.</div><div class="bar"><i id="bar"></i></div>
+    </section>
+    <section class="card">
+      <h2>▶️ Final video</h2>
+      <div id="empty" class="status" style="min-height:260px;display:grid;place-items:center;text-align:center">Your finished MP4 will appear here.</div>
+      <video id="video" controls class="hidden"></video>
+      <a id="download" class="hidden" style="display:block;text-align:center;margin-top:12px;color:#8ed8ff;font-weight:800" download>⬇️ Download MP4</a>
+      <p class="note">Long videos are assembled from multiple short AI-generated scenes. Generation time and API cost depend on duration and number of scenes.</p>
+    </section>
+  </div>
 </div>
 <script>
-for(let i=1;i<=20;i++){let o=document.createElement('option');o.value=i*60;o.textContent=i+' minute'+(i>1?'s':'');if(i===10)o.selected=true;duration.appendChild(o)}
-prompt.addEventListener('input',()=>{pv.innerHTML=(prompt.value||'Your video preview').slice(0,120).replace(/</g,'&lt;')+'<small>'+cat.value+' • '+lang.value+' • '+duration.options[duration.selectedIndex].text+'</small>'});
-async function postJSON(url,data){let r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json',...(key.value?{'Authorization':'Bearer '+key.value}:{})},body:JSON.stringify(data)});if(!r.ok)throw Error(await r.text());return r.json()}
-go.onclick=async()=>{
- if(!prompt.value.trim()){status.textContent='❌ Enter your text or script first.';return}
- if(!endpoint.value.trim()){status.textContent='❌ Add your deployed AI video API endpoint. A static HTML file cannot perform server-side AI video generation by itself.';return}
- go.disabled=true;fill.style.width='5%';status.textContent='Submitting generation job…';download.style.display='none';
- const data={prompt:prompt.value,category:cat.value,language:lang.value,duration_seconds:+duration.value,aspect_ratio:ratio.value,visual_style:style.value,voice:voice.value};
+const d=document.getElementById('duration'); for(let i=1;i<=20;i++){let o=document.createElement('option');o.value=i;o.textContent=i+' minute'+(i>1?'s':'');if(i===10)o.selected=true;d.appendChild(o)}
+const $=id=>document.getElementById(id);
+function setStatus(t,cls=''){ $('status').textContent=t;$('status').className='status '+cls }
+$('go').onclick=async()=>{
+ const script=$('script').value.trim(); if(!script){setStatus('Please paste the complete script first.','err');return}
+ $('go').disabled=true;$('video').classList.add('hidden');$('download').classList.add('hidden');$('empty').classList.remove('hidden');$('bar').style.width='2%';
+ setStatus('Submitting real video job…');
  try{
-   const job=await postJSON(endpoint.value.replace(/\/$/,''),data);
-   if(job.video_url){fill.style.width='100%';status.textContent='✅ Video ready.';download.href=job.video_url;download.style.display='block';return}
-   const id=job.job_id||job.id;
-   if(!id)throw Error('Server did not return job_id or video_url');
-   const base=endpoint.value.replace(/\/generate\/?$/,'').replace(/\/$/,'');
-   for(;;){await new Promise(r=>setTimeout(r,1800));const r=await fetch(base+'/jobs/'+id);const j=await r.json();fill.style.width=(j.progress||0)+'%';status.textContent='⏳ '+(j.message||j.status||'Generating…');if(j.status==='done'||j.video_url){fill.style.width='100%';download.href=j.video_url;download.style.display='block';status.textContent='✅ Real MP4 is ready.';break}if(j.status==='error')throw Error(j.message||'Generation failed')}
- }catch(e){status.textContent='❌ '+(e.message||'Could not connect to the AI video service.')}
- finally{go.disabled=false}
+   const r=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    title:$('title').value,topic:$('topic').value,script,category:$('category').value,language:$('language').value,
+    duration_minutes:+$('duration').value,aspect:$('aspect').value,style:$('style').value,clip_seconds:+$('clip').value,api_key:$('key').value
+   })});
+   const j=await r.json(); if(!r.ok) throw new Error(j.detail||'Generation request failed');
+   const id=j.job_id; setStatus('Job created. Generating scenes…');
+   let done=false;
+   while(!done){await new Promise(x=>setTimeout(x,2500));const s=await fetch('/api/status/'+id);const x=await s.json();
+    $('bar').style.width=Math.max(3,Math.min(100,x.progress||0))+'%';setStatus(x.message||x.status);
+    if(x.status==='completed'){done=true;$('empty').classList.add('hidden');$('video').src=x.video_url;$('video').classList.remove('hidden');$('download').href=x.video_url;$('download').classList.remove('hidden');setStatus('REAL MP4 ready.','ok')}
+    if(x.status==='failed')throw new Error(x.message||'Generation failed');
+   }
+ }catch(e){setStatus('❌ '+e.message,'err')}finally{$('go').disabled=false}
 };
 </script>
 </body></html>
