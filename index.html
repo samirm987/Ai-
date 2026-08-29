@@ -1,110 +1,39 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LongForge Pro V2 — AI Video Studio</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LongForge Real AI Video</title>
 <style>
-:root{--bg:#060914;--card:#0f1627;--card2:#131d32;--text:#f4f7ff;--muted:#9aa9c4;--line:#263452;--p:#7b5cff;--q:#16c7ff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0,#20265d,transparent 38%),radial-gradient(circle at 90% 20%,#063f58,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:18px}.top{display:flex;align-items:center;gap:12px;margin-bottom:16px}.logo{width:50px;height:50px;border-radius:15px;background:linear-gradient(135deg,var(--p),var(--q));display:grid;place-items:center;font-weight:900;box-shadow:0 12px 35px #5870ff44}.top h1{margin:0;font-size:23px}.top p{margin:3px 0;color:var(--muted);font-size:12px}.card{background:linear-gradient(180deg,#111a2deF,#0b1120F2);border:1px solid var(--line);border-radius:20px;padding:18px;margin:12px 0;box-shadow:0 20px 70px #0006}.grid{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}@media(max-width:760px){.grid{grid-template-columns:1fr}}label{font-size:12px;color:#b7c4dd;display:block;margin:0 0 6px}textarea,input,select{width:100%;background:#070c18;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px;font:inherit;outline:none}textarea{min-height:330px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}.btn{border:0;border-radius:12px;padding:13px 15px;font-weight:850;color:#fff;background:linear-gradient(135deg,var(--p),#4c8fff);cursor:pointer}.btn.alt{background:#182238;border:1px solid var(--line)}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.hint{color:var(--muted);font-size:11px;line-height:1.55}.status{padding:12px;background:#080e1a;border:1px solid var(--line);border-radius:12px;margin:10px 0}.bar{height:9px;background:#080e1a;border-radius:20px;overflow:hidden;border:1px solid var(--line)}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--q));transition:.25s}.scene{border:1px solid var(--line);background:#0a101d;border-radius:12px;padding:11px;margin-top:7px}.scene b{font-size:12px}.scene div{font-size:11px;color:var(--muted);margin-top:4px}.tag{display:inline-block;border:1px solid #334364;border-radius:999px;padding:5px 8px;color:#cbd6eb;font-size:11px;margin:3px}
-</style>
-</head>
-<body>
-<div class="wrap">
-<div class="top"><div class="logo">LF</div><div><h1>LongForge Pro V2</h1><p>Title + Topic + Script → AI Scene Plan → Long Video</p></div></div>
-
-<div class="card">
-<div class="grid">
+*{box-sizing:border-box}body{margin:0;background:#070b15;color:#eef3ff;font-family:Inter,system-ui,Arial}
+.wrap{max-width:1100px;margin:auto;padding:18px}.head{display:flex;gap:12px;align-items:center;margin-bottom:15px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,#7b5cff,#16c7ff);display:grid;place-items:center;font-weight:900}.head h1{margin:0}.muted{color:#91a0ba;font-size:12px}.card{background:#101827;border:1px solid #263451;border-radius:20px;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}@media(max-width:760px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:12px;color:#b9c5dc;margin:0 0 6px}input,textarea,select{width:100%;padding:12px;border-radius:11px;border:1px solid #2a3854;background:#080e19;color:#fff;font:inherit}textarea{min-height:300px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0}.btn{border:0;border-radius:12px;padding:13px 16px;font-weight:900;color:#fff;background:linear-gradient(135deg,#7b5cff,#248cff);cursor:pointer}.btn:disabled{opacity:.45}.status{margin-top:12px;padding:12px;border-radius:11px;background:#080e19;border:1px solid #263451}.bar{height:9px;background:#080e19;border:1px solid #263451;border-radius:99px;overflow:hidden;margin-top:9px}.fill{height:100%;width:0;background:linear-gradient(90deg,#7b5cff,#16c7ff)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.scene{padding:10px;border:1px solid #263451;border-radius:10px;margin-top:7px;background:#0b1220}.scene b{font-size:12px}.scene span{display:block;color:#91a0ba;font-size:11px;margin-top:3px}
+</style></head><body><div class="wrap">
+<div class="head"><div class="logo">LF</div><div><h1>LongForge Real AI</h1><div class="muted">Title + Topic + Script → AI visuals + voice → MP4</div></div></div>
+<div class="card"><div class="grid">
+<div><label>TITLE</label><input id="title" placeholder="Your video title"><label>TOPIC</label><input id="topic" placeholder="Main topic"><label>FULL SCRIPT</label><textarea id="script" placeholder="Paste the complete script here..."></textarea></div>
 <div>
-<label>VIDEO TITLE</label>
-<input id="title" placeholder="Example: 7 Habits That Change Your Life">
-<label style="margin-top:10px">TOPIC / IDEA</label>
-<input id="topic" placeholder="Example: Self improvement and discipline">
-<label style="margin-top:10px">FULL SCRIPT</label>
-<textarea id="script" placeholder="Paste your complete script here..."></textarea>
+<label>CATEGORY</label><select id="category"><option>Cooking</option><option>Motivation</option><option>Education</option><option>Technology</option><option>Science</option><option>History</option><option>Documentary</option><option>Travel</option><option>Business</option><option>Finance</option><option>Health & Fitness</option><option>Kids</option><option>Gaming</option><option>How-To / Tutorial</option><option>Food & Recipes</option><option>Nature</option><option>Storytelling</option><option>Entertainment</option><option>All Other</option></select>
+<label>LANGUAGE</label><select id="language"><option>English (USA)</option><option>Hindi</option><option>Bengali</option><option>Spanish</option><option>French</option><option>German</option><option>Portuguese</option><option>Italian</option><option>Japanese</option><option>Korean</option><option>Chinese</option><option>Arabic</option><option>Urdu</option><option>Tamil</option><option>Telugu</option><option>Marathi</option><option>Gujarati</option><option>Punjabi</option><option>Odia</option><option>Malayalam</option><option>Kannada</option><option>Nepali</option></select>
+<label>DURATION</label><select id="duration"></select>
+<label>VISUAL STYLE</label><select id="style"><option>Cinematic</option><option>Ultra Realistic</option><option>3D</option><option>Documentary</option><option>Animation</option><option>Luxury Branding</option></select>
+<div class="row"><div><label>VOICE</label><select id="voice"><option>USA Male — Deep</option><option>USA Male — Energetic</option><option>USA Female — Warm</option><option>USA Female — Professional</option><option>Auto</option></select></div><div><label>ASPECT</label><select id="aspect"><option>16:9</option><option>9:16</option><option>1:1</option></select></div></div>
+<label>BACKEND URL</label><input id="backend" value="http://localhost:8000">
+<div class="actions"><button class="btn" id="generate">🎬 Generate Real Video</button></div>
+<div class="muted" style="margin-top:9px">This version sends the complete title, topic, script, category, language and duration to the backend. The backend creates AI-generated scene images, narration and an MP4 with FFmpeg.</div>
+</div></div></div>
+<div class="card"><b>Status</b><div id="status" class="status">Ready.</div><div class="bar"><div class="fill" id="fill"></div></div><div id="scenes"></div><div class="actions"><a id="download" class="btn" style="display:none;text-decoration:none">⬇ Download MP4</a></div></div>
 </div>
-<div>
-<label>CATEGORY</label>
-<select id="category">
-<option>Cooking</option><option>Motivation</option><option>Education</option><option>Technology</option><option>Science</option><option>History</option><option>Documentary</option><option>Travel</option><option>Business</option><option>Finance</option><option>Health & Fitness</option><option>News</option><option>Storytelling</option><option>Entertainment</option><option>Kids</option><option>Gaming</option><option>How-To / Tutorial</option><option>Food & Recipes</option><option>Nature</option><option>Religion & Spirituality</option><option>All Other</option>
-</select>
-
-<label style="margin-top:10px">LANGUAGE</label>
-<select id="language">
-<option>English (USA)</option><option>Hindi</option><option>Bengali</option><option>Spanish</option><option>French</option><option>German</option><option>Portuguese</option><option>Italian</option><option>Japanese</option><option>Korean</option><option>Chinese</option><option>Arabic</option><option>Urdu</option><option>Tamil</option><option>Telugu</option><option>Marathi</option><option>Gujarati</option><option>Punjabi</option><option>Odia</option><option>Malayalam</option><option>Kannada</option><option>Nepali</option><option>All Other</option>
-</select>
-
-<label style="margin-top:10px">DURATION</label>
-<select id="duration">
-<option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option><option value="240">4 minutes</option><option value="300">5 minutes</option><option value="360">6 minutes</option><option value="420">7 minutes</option><option value="480">8 minutes</option><option value="540">9 minutes</option><option value="600">10 minutes</option><option value="660">11 minutes</option><option value="720">12 minutes</option><option value="780">13 minutes</option><option value="840">14 minutes</option><option value="900">15 minutes</option><option value="960">16 minutes</option><option value="1020">17 minutes</option><option value="1080">18 minutes</option><option value="1140">19 minutes</option><option value="1200">20 minutes</option>
-</select>
-
-<div class="row" style="margin-top:10px"><div><label>VISUAL STYLE</label><select id="style"><option>Cinematic</option><option>Ultra Realistic</option><option>3D</option><option>Documentary</option><option>Animation</option><option>Luxury / Branding</option><option>Social Media</option></select></div><div><label>ASPECT</label><select id="aspect"><option>16:9</option><option>9:16</option><option>1:1</option></select></div></div>
-
-<div class="row"><div><label>VOICE</label><select id="voice"><option>USA Male — Deep & Energetic</option><option>USA Male — Natural</option><option>USA Female — Warm</option><option>USA Female — Professional</option><option>Auto by Language</option></select></div><div><label>CAPTIONS</label><select id="captions"><option>On</option><option>Off</option></select></div></div>
-
-<label>SECURE AI BACKEND ENDPOINT</label>
-<input id="endpoint" placeholder="https://your-domain.com/api/generate">
-
-<div class="actions"><button class="btn" id="generate">Generate AI Video</button><button class="btn alt" id="plan">Create Scene Plan</button></div>
-</div>
-</div>
-</div>
-
-<div class="card">
-<b>AI Generation Status</b>
-<div class="status" id="status">Ready — choose category, language and duration, then generate.</div>
-<div class="bar"><div class="fill" id="fill"></div></div>
-<div id="scenes"></div>
-<div class="actions"><button class="btn alt" id="download" disabled>Download MP4</button></div>
-</div>
-
-<div class="card">
-<b>Selected configuration</b>
-<div id="tags"><span class="tag">Category: Cooking</span><span class="tag">Language: English (USA)</span><span class="tag">Duration: 1 minute</span></div>
-<p class="hint">This frontend sends title, topic, script, category, language, duration, visual style, aspect ratio, voice and captions to your secure AI backend. The backend must call your chosen AI video/image model, TTS service and video renderer, then return an MP4 URL. GitHub Pages alone cannot create genuine AI video.</p>
-</div>
-</div>
-
 <script>
 const $=x=>document.getElementById(x);
-function updateTags(){ $('tags').innerHTML=[['Category',$('category').value],['Language',$('language').value],['Duration',$('duration').selectedOptions[0].text],['Style',$('style').value],['Aspect',$('aspect').value]].map(x=>`<span class="tag">${x[0]}: ${x[1]}</span>`).join(''); }
-['category','language','duration','style','aspect'].forEach(id=>$(id).addEventListener('change',updateTags)); updateTags();
-
-function makeScenes(){
- const script=$('script').value.trim(), title=$('title').value.trim(), topic=$('topic').value.trim(), dur=+$('duration').value;
- if(!script){alert('Please paste the script first.');return []}
- const words=script.split(/\s+/), sceneCount=Math.max(1,Math.ceil(dur/7)), per=Math.max(1,Math.ceil(words.length/sceneCount)), out=[];
- for(let i=0;i<words.length;i+=per) out.push({number:out.length+1,text:words.slice(i,i+per).join(' '),duration:7});
- const plan=out.slice(0,sceneCount).map((s,i)=>({scene:i+1,visualPrompt:`${$('style').value} visual for ${$('category').value}. Title: ${title}. Topic: ${topic}. Show a fresh visual matching this narration: ${s.text}`,narration:s.text,duration:s.duration}));
- return plan;
-}
-function showPlan(){
- const p=makeScenes(); if(!p.length)return;
- $('scenes').innerHTML=p.map(s=>`<div class="scene"><b>Scene ${s.scene} • ${s.duration}s</b><div>${s.visualPrompt}</div></div>`).join('');
- $('status').textContent=`Scene plan created: ${p.length} scenes.`;
-}
-$('plan').onclick=showPlan;
-
+for(let i=1;i<=20;i++){let o=document.createElement('option');o.value=i*60;o.textContent=i+' minute'+(i>1?'s':'');if(i==10)o.selected=true;$('duration').appendChild(o)}
+function showScenes(a){$('scenes').innerHTML=a.map((s,i)=>`<div class="scene"><b>Scene ${i+1}</b><span>${s.narration||s.text||''}</span></div>`).join('')}
 $('generate').onclick=async()=>{
- const script=$('script').value.trim(); if(!script){alert('Please paste your script first.');return}
- const plan=makeScenes(); showPlan(); const endpoint=$('endpoint').value.trim();
- $('generate').disabled=true; $('fill').style.width='5%';
- const payload={title:$('title').value,topic:$('topic').value,script,category:$('category').value,language:$('language').value,durationSeconds:+$('duration').value,visualStyle:$('style').value,aspectRatio:$('aspect').value,voice:$('voice').value,captions:$('captions').value,scenes:plan};
- if(!endpoint){
-   $('status').innerHTML='<span style="color:#ffd37a">No AI backend connected.</span> The scene plan is ready, but genuine AI visuals/voice/MP4 require a backend API.';
-   $('fill').style.width='100%'; $('generate').disabled=false; return;
- }
+ let payload={title:$('title').value.trim(),topic:$('topic').value.trim(),script:$('script').value.trim(),category:$('category').value,language:$('language').value,duration_seconds:+$('duration').value,visual_style:$('style').value,voice:$('voice').value,aspect_ratio:$('aspect').value};
+ if(!payload.title||!payload.topic||!payload.script){alert('Title, Topic and Script are required.');return}
+ $('generate').disabled=true;$('download').style.display='none';$('fill').style.width='5%';$('status').textContent='Creating scene plan…';
  try{
-  $('status').textContent='Submitting title, topic, script and scene prompts to AI backend…';
-  const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  if(!r.ok)throw new Error('Backend returned HTTP '+r.status);
-  const data=await r.json(); $('fill').style.width='100%';
-  $('status').innerHTML='<span style="color:#75f0b1">AI generation request accepted.</span> '+(data.message||'');
-  if(data.videoUrl){$('download').disabled=false;$('download').onclick=()=>{const a=document.createElement('a');a.href=data.videoUrl;a.download='LongForge-AI-Video.mp4';a.click();}}
- }catch(e){$('status').innerHTML='<span style="color:#ff9d9d">Error:</span> '+e.message}
- $('generate').disabled=false;
+  let base=$('backend').value.replace(/\/$/,'');
+  let r=await fetch(base+'/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  if(!r.ok)throw Error(await r.text()); let d=await r.json(); if(d.scenes)showScenes(d.scenes); let id=d.job_id;
+  for(;;){await new Promise(x=>setTimeout(x,1200));let q=await fetch(base+'/jobs/'+id);let j=await q.json();$('fill').style.width=(j.progress||0)+'%';$('status').textContent=j.message||j.status;if(j.scenes)showScenes(j.scenes);if(j.status==='done'){let a=$('download');a.href=base+j.video_url;a.download='LongForge_'+id+'.mp4';a.style.display='inline-block';break}if(j.status==='error')throw Error(j.message)}
+ }catch(e){$('status').textContent='Error: '+e.message}finally{$('generate').disabled=false}
 };
-</script>
-</body>
-</html>
+</script></body></html>
