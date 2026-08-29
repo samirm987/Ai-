@@ -1,22 +1,15 @@
-# LongForge backend
+# LongForge backend — deploy this publicly
 
-## Requirements
-- Python 3.10+
-- FFmpeg installed and available as `ffmpeg`
-- Internet access from the server (for AI image generation and TTS)
+The screenshot error `Failed to fetch` happens because the GitHub Pages frontend is trying to call `http://localhost:8000`. A GitHub Pages website cannot use your phone's localhost as its production backend.
 
-## Start
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
+Deploy this `backend` folder to any service that supports Docker (for example Render, Railway, Fly.io, a VPS, etc.). After deployment, copy the public **HTTPS** URL and paste it into the frontend's **DEPLOYED BACKEND URL** field.
 
-Then open `frontend/index.html` and keep Backend URL as `http://localhost:8000`.
+Health test:
+`https://YOUR-BACKEND/health`
 
-## What this does
-Title + topic + script + category + language + duration are sent to the backend.
-The backend creates topic/script-specific AI image prompts, generates images, creates narration with Edge TTS, combines scenes with FFmpeg, and returns an MP4.
+It should return JSON like:
+`{"ok":true,"service":"LongForge Real Video Backend"}`
 
-## Important
-This is a real backend pipeline, not a canvas fake-video generator. It still needs the server to have Python, FFmpeg and internet access. Pollinations and Edge TTS are third-party services and can change availability/rate limits. For production, replace them with paid or self-hosted providers and add authentication/queue storage.
+Then Generate Real Video.
+
+The backend needs internet access, FFmpeg and enough CPU/disk for rendering. The demo AI image provider and Edge TTS are external services; for production, use your own AI provider/API keys and persistent job storage.

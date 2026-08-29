@@ -1,11 +1,17 @@
-LongForge Real AI Video Generator
+WHY YOUR SCREENSHOT SHOWS FAILED TO FETCH
 
-1. Install Python 3.10+ and FFmpeg.
-2. Open a terminal in the backend folder.
-3. pip install -r requirements.txt
-4. uvicorn main:app --host 0.0.0.0 --port 8000
-5. Open frontend/index.html.
-6. Enter Title + Topic + Script, choose Category, Language and 1–20 minute duration.
-7. Click Generate Real Video.
+Your GitHub Pages website is using:
+http://localhost:8000
 
-The browser alone cannot generate genuine AI video. This package includes the backend needed to create AI images + narration + MP4.
+That address means THIS DEVICE, not the Internet. Your GitHub Pages site cannot reach a backend running only on localhost.
+
+FIX:
+1. Deploy the backend folder publicly.
+2. It includes Dockerfile + FastAPI + FFmpeg.
+3. Copy the deployed HTTPS URL.
+4. Open the GitHub Pages frontend.
+5. Paste the HTTPS URL into DEPLOYED BACKEND URL.
+6. Tap Test Connection. You must see Backend connected.
+7. Then Generate Real Video.
+
+Do not expect a real 9–20 minute AI video from HTML alone. HTML is the interface; the backend performs AI generation, voice and MP4 rendering.

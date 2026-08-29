@@ -1,39 +1,69 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LongForge Real AI Video</title>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LongForge AI Video Studio</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070b15;color:#eef3ff;font-family:Inter,system-ui,Arial}
-.wrap{max-width:1100px;margin:auto;padding:18px}.head{display:flex;gap:12px;align-items:center;margin-bottom:15px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,#7b5cff,#16c7ff);display:grid;place-items:center;font-weight:900}.head h1{margin:0}.muted{color:#91a0ba;font-size:12px}.card{background:#101827;border:1px solid #263451;border-radius:20px;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}@media(max-width:760px){.grid{grid-template-columns:1fr}}
-label{display:block;font-size:12px;color:#b9c5dc;margin:0 0 6px}input,textarea,select{width:100%;padding:12px;border-radius:11px;border:1px solid #2a3854;background:#080e19;color:#fff;font:inherit}textarea{min-height:300px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:10px 0}.btn{border:0;border-radius:12px;padding:13px 16px;font-weight:900;color:#fff;background:linear-gradient(135deg,#7b5cff,#248cff);cursor:pointer}.btn:disabled{opacity:.45}.status{margin-top:12px;padding:12px;border-radius:11px;background:#080e19;border:1px solid #263451}.bar{height:9px;background:#080e19;border:1px solid #263451;border-radius:99px;overflow:hidden;margin-top:9px}.fill{height:100%;width:0;background:linear-gradient(90deg,#7b5cff,#16c7ff)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.scene{padding:10px;border:1px solid #263451;border-radius:10px;margin-top:7px;background:#0b1220}.scene b{font-size:12px}.scene span{display:block;color:#91a0ba;font-size:11px;margin-top:3px}
-</style></head><body><div class="wrap">
-<div class="head"><div class="logo">LF</div><div><h1>LongForge Real AI</h1><div class="muted">Title + Topic + Script → AI visuals + voice → MP4</div></div></div>
+*{box-sizing:border-box}body{margin:0;background:#070b15;color:#f5f7ff;font-family:system-ui,-apple-system,Segoe UI,Arial}
+.wrap{max-width:1080px;margin:auto;padding:18px}.top{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#7c4dff,#00bfff);display:grid;place-items:center;font-weight:900}
+h1{font-size:24px;margin:0}.muted{color:#91a0b8;font-size:12px}.card{background:#101827;border:1px solid #263552;border-radius:20px;padding:18px;margin-top:14px}
+.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:15px}@media(max-width:760px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:12px;color:#aebbd2;margin:10px 0 6px}input,textarea,select{width:100%;background:#080e19;color:#fff;border:1px solid #2b3a59;border-radius:11px;padding:12px;font:inherit}
+textarea{min-height:260px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.btn{border:0;border-radius:12px;padding:13px 17px;color:white;font-weight:800;background:linear-gradient(135deg,#7c4dff,#208cff);cursor:pointer}.btn:disabled{opacity:.45}
+.status{margin-top:10px;padding:12px;border:1px solid #293855;background:#080e19;border-radius:11px}.bar{height:9px;background:#080e19;border:1px solid #293855;border-radius:99px;overflow:hidden;margin-top:9px}.fill{height:100%;width:0;background:linear-gradient(90deg,#7c4dff,#00c6ff)}
+.notice{border-left:4px solid #ffb000;padding:11px;background:#15120a;color:#ffd979;border-radius:8px;margin-top:12px;font-size:13px}
+.scene{padding:9px;margin-top:7px;border:1px solid #293855;border-radius:10px;background:#0b1220}.scene b{font-size:12px}.scene span{display:block;color:#93a2ba;font-size:11px;margin-top:3px}
+</style></head>
+<body><div class="wrap">
+<div class="top"><div class="logo">LF</div><div><h1>LongForge AI Video Studio</h1><div class="muted">Real backend video generation — not a fake preview</div></div></div>
+
+<div class="card"><div class="notice">⚠️ <b>Important:</b> GitHub Pages cannot run Python/FFmpeg. Enter your deployed backend URL below. Do <b>not</b> use <code>localhost</code> on a GitHub Pages site.</div></div>
+
 <div class="card"><div class="grid">
-<div><label>TITLE</label><input id="title" placeholder="Your video title"><label>TOPIC</label><input id="topic" placeholder="Main topic"><label>FULL SCRIPT</label><textarea id="script" placeholder="Paste the complete script here..."></textarea></div>
 <div>
-<label>CATEGORY</label><select id="category"><option>Cooking</option><option>Motivation</option><option>Education</option><option>Technology</option><option>Science</option><option>History</option><option>Documentary</option><option>Travel</option><option>Business</option><option>Finance</option><option>Health & Fitness</option><option>Kids</option><option>Gaming</option><option>How-To / Tutorial</option><option>Food & Recipes</option><option>Nature</option><option>Storytelling</option><option>Entertainment</option><option>All Other</option></select>
-<label>LANGUAGE</label><select id="language"><option>English (USA)</option><option>Hindi</option><option>Bengali</option><option>Spanish</option><option>French</option><option>German</option><option>Portuguese</option><option>Italian</option><option>Japanese</option><option>Korean</option><option>Chinese</option><option>Arabic</option><option>Urdu</option><option>Tamil</option><option>Telugu</option><option>Marathi</option><option>Gujarati</option><option>Punjabi</option><option>Odia</option><option>Malayalam</option><option>Kannada</option><option>Nepali</option></select>
+<label>TITLE</label><input id="title" placeholder="Video title">
+<label>TOPIC</label><input id="topic" placeholder="Main topic">
+<label>FULL SCRIPT</label><textarea id="script" placeholder="Paste your complete script here..."></textarea>
+</div>
+<div>
+<label>CATEGORY</label><select id="category">
+<option>Cooking</option><option>Motivation</option><option>Education</option><option>Technology</option><option>Science</option><option>History</option><option>Documentary</option><option>Travel</option><option>Business</option><option>Finance</option><option>Health & Fitness</option><option>Kids</option><option>Gaming</option><option>How-To / Tutorial</option><option>Food & Recipes</option><option>Nature</option><option>Storytelling</option><option>Entertainment</option><option>All Other</option>
+</select>
+<label>LANGUAGE</label><select id="language">
+<option>English (USA)</option><option>Hindi</option><option>Bengali</option><option>Spanish</option><option>French</option><option>German</option><option>Portuguese</option><option>Italian</option><option>Japanese</option><option>Korean</option><option>Chinese</option><option>Arabic</option><option>Urdu</option><option>Tamil</option><option>Telugu</option><option>Marathi</option><option>Gujarati</option><option>Punjabi</option><option>Odia</option><option>Malayalam</option><option>Kannada</option><option>Nepali</option>
+</select>
 <label>DURATION</label><select id="duration"></select>
-<label>VISUAL STYLE</label><select id="style"><option>Cinematic</option><option>Ultra Realistic</option><option>3D</option><option>Documentary</option><option>Animation</option><option>Luxury Branding</option></select>
-<div class="row"><div><label>VOICE</label><select id="voice"><option>USA Male — Deep</option><option>USA Male — Energetic</option><option>USA Female — Warm</option><option>USA Female — Professional</option><option>Auto</option></select></div><div><label>ASPECT</label><select id="aspect"><option>16:9</option><option>9:16</option><option>1:1</option></select></div></div>
-<label>BACKEND URL</label><input id="backend" value="http://localhost:8000">
-<div class="actions"><button class="btn" id="generate">🎬 Generate Real Video</button></div>
-<div class="muted" style="margin-top:9px">This version sends the complete title, topic, script, category, language and duration to the backend. The backend creates AI-generated scene images, narration and an MP4 with FFmpeg.</div>
+<div class="row"><div><label>VISUAL STYLE</label><select id="style"><option>Cinematic</option><option>Ultra Realistic</option><option>3D</option><option>Documentary</option><option>Animation</option><option>Luxury Branding</option></select></div>
+<div><label>ASPECT</label><select id="aspect"><option>16:9</option><option>9:16</option><option>1:1</option></select></div></div>
+<label>VOICE</label><select id="voice"><option>USA Male — Deep</option><option>USA Male — Energetic</option><option>USA Female — Warm</option><option>USA Female — Professional</option><option>Auto</option></select>
+<label>DEPLOYED BACKEND URL</label><input id="backend" placeholder="https://your-backend.example.com">
+<div class="actions"><button class="btn" id="check">🔌 Test Connection</button> <button class="btn" id="generate">🎬 Generate Real Video</button></div>
+<div class="muted" style="margin-top:8px">Choose 1–20 minutes. The backend turns the title/topic/script into scene prompts, AI visuals, narration and a real MP4.</div>
 </div></div></div>
-<div class="card"><b>Status</b><div id="status" class="status">Ready.</div><div class="bar"><div class="fill" id="fill"></div></div><div id="scenes"></div><div class="actions"><a id="download" class="btn" style="display:none;text-decoration:none">⬇ Download MP4</a></div></div>
+
+<div class="card"><b>Status</b><div id="status" class="status">Enter your deployed backend URL and test the connection.</div><div class="bar"><div id="fill" class="fill"></div></div><div id="scenes"></div><p><a id="download" class="btn" style="display:none;text-decoration:none">⬇ Download MP4</a></p></div>
 </div>
 <script>
-const $=x=>document.getElementById(x);
-for(let i=1;i<=20;i++){let o=document.createElement('option');o.value=i*60;o.textContent=i+' minute'+(i>1?'s':'');if(i==10)o.selected=true;$('duration').appendChild(o)}
-function showScenes(a){$('scenes').innerHTML=a.map((s,i)=>`<div class="scene"><b>Scene ${i+1}</b><span>${s.narration||s.text||''}</span></div>`).join('')}
+const $=id=>document.getElementById(id);
+for(let i=1;i<=20;i++){let o=document.createElement('option');o.value=i*60;o.textContent=i+' minute'+(i>1?'s':'');if(i===10)o.selected=true;$('duration').appendChild(o)}
+function base(){return $('backend').value.trim().replace(/\/$/,'')}
+function fail(msg){$('status').textContent='❌ '+msg}
+$('check').onclick=async()=>{
+ if(!base()){fail('Backend URL is empty. Deploy the backend first, then paste its HTTPS URL here.');return}
+ $('status').textContent='Connecting…';
+ try{let r=await fetch(base()+'/health',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);let d=await r.json();$('status').textContent='✅ Backend connected: '+(d.service||'LongForge');}
+ catch(e){fail('Cannot reach backend. Do not use localhost on GitHub Pages. Check the HTTPS backend URL and CORS.')}
+};
+function showScenes(a){$('scenes').innerHTML=a.map((s,i)=>`<div class="scene"><b>Scene ${i+1}</b><span>${s.narration||''}</span></div>`).join('')}
 $('generate').onclick=async()=>{
- let payload={title:$('title').value.trim(),topic:$('topic').value.trim(),script:$('script').value.trim(),category:$('category').value,language:$('language').value,duration_seconds:+$('duration').value,visual_style:$('style').value,voice:$('voice').value,aspect_ratio:$('aspect').value};
- if(!payload.title||!payload.topic||!payload.script){alert('Title, Topic and Script are required.');return}
- $('generate').disabled=true;$('download').style.display='none';$('fill').style.width='5%';$('status').textContent='Creating scene plan…';
+ let p={title:$('title').value.trim(),topic:$('topic').value.trim(),script:$('script').value.trim(),category:$('category').value,language:$('language').value,duration_seconds:+$('duration').value,visual_style:$('style').value,voice:$('voice').value,aspect_ratio:$('aspect').value};
+ if(!p.title||!p.topic||!p.script){fail('Title, Topic and Full Script are required.');return}
+ if(!base()||/localhost|127\\.0\\.0\\.1/.test(base())){fail('This is the problem: localhost only works when the backend is running on the same device. Deploy the backend and paste its HTTPS URL.');return}
+ $('generate').disabled=true;$('check').disabled=true;$('fill').style.width='3%';$('download').style.display='none';$('status').textContent='Submitting real video job…';
  try{
-  let base=$('backend').value.replace(/\/$/,'');
-  let r=await fetch(base+'/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  if(!r.ok)throw Error(await r.text()); let d=await r.json(); if(d.scenes)showScenes(d.scenes); let id=d.job_id;
-  for(;;){await new Promise(x=>setTimeout(x,1200));let q=await fetch(base+'/jobs/'+id);let j=await q.json();$('fill').style.width=(j.progress||0)+'%';$('status').textContent=j.message||j.status;if(j.scenes)showScenes(j.scenes);if(j.status==='done'){let a=$('download');a.href=base+j.video_url;a.download='LongForge_'+id+'.mp4';a.style.display='inline-block';break}if(j.status==='error')throw Error(j.message)}
- }catch(e){$('status').textContent='Error: '+e.message}finally{$('generate').disabled=false}
+  let r=await fetch(base()+'/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
+  if(!r.ok)throw Error(await r.text());let d=await r.json();showScenes(d.scenes||[]);let id=d.job_id;
+  for(;;){await new Promise(x=>setTimeout(x,1500));let q=await fetch(base()+'/jobs/'+id);let j=await q.json();$('fill').style.width=(j.progress||0)+'%';$('status').textContent='⏳ '+(j.message||j.status);if(j.scenes)showScenes(j.scenes);if(j.status==='done'){let a=$('download');a.href=base()+j.video_url;a.style.display='inline-block';$('status').textContent='✅ Real MP4 is ready.';break}if(j.status==='error')throw Error(j.message)}
+ }catch(e){fail(e.message||'Generation failed.')}finally{$('generate').disabled=false;$('check').disabled=false}
 };
 </script></body></html>
